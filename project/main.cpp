@@ -6,32 +6,56 @@
 
 using namespace std;
 
-int main()
-{
-  /* grab current word */
-  string resp;
-  cout << "Give me some words: ";
-  getline(cin, resp);
-  resp.push_back('\n');
+/* This function will seperate a sentence given the a specified deliminator
+ * will return vector array of strings.
+ *
+ * Sources:
+ *   > programiz.com/cpp-programming/vectors
+ *   > techiedelight.com/append-char-end-string-cpp
+ */
 
-  /* print individual word */
-  vector<string> words;
-  words.push_back("");
-  int wordIndex = 0;
-  for (auto c : resp)
+vector<string> seperateByDelim(string sentence, char regx)
+{
+  vector<string> sepWords;
+  sepWords.push_back("");
+  for (auto c : sentence)
   {
-    if ((c == ' ') || (c == '\n'))
+    if ((c == regx) || (c == '\n'))
     {
-      cout << "word " << wordIndex << " is " << words.at(wordIndex) << endl;
-      words.push_back("");
-      wordIndex += 1;
+      if (c == '\n')
+      {
+        break;
+      }
+      else
+      {
+        sepWords.push_back("");
+      }
     }
     else
     {
-      words.at(wordIndex) = words.at(wordIndex) + c;
+      sepWords.at(sepWords.size() - 1) = sepWords.at(sepWords.size() - 1) + c;
     }
   }
-  cout << "Word count is " << wordIndex << endl;
+  return sepWords;
+} /* seperateByDelim() */
+
+int main()
+{
+  /* grab a sentence from user */
+  string buffer;
+  cout << "Give me a sentence: ";
+  getline(cin, buffer);
+  buffer.push_back('\n');
+
+  /* grab words seperated by a deliminator */
+  vector<string> words = seperateByDelim(buffer, ' ');
+
+  /* print the words in a loop */
+  for (int i = 0; i < (int) words.size(); i++)
+  {
+    cout << i << " : " << words.at(i) << endl;
+  }
+
   return 0;
-}
+} /* main() */
 
