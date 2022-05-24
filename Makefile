@@ -1,16 +1,13 @@
 CC=g++
 STD=-std=c++17
 FIN="Complete..."
+PROJDIR=project
 
-comp: main.cpp
+comp: $(PROJDIR)/main.cpp 
 	@echo "Compiling main.cpp to main..."
-	$(CC) main.cpp -Werror -Wall $(STD) -o main
+	$(CC) $(PROJDIR)/main.cpp -Werror -Wall $(STD) -o main
 	./main
-	make clean
-
-clean: main
-	@echo "Removing main from directory..."
-	rm main
+	rm main -i -v
 	@echo $(FIN)
 
 edit-help:
