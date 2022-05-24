@@ -5,6 +5,8 @@ FIN="Complete..."
 comp: main.cpp
 	@echo "Compiling main.cpp to main..."
 	$(CC) main.cpp -Werror -Wall $(STD) -o main
+	./main
+	make clean
 
 clean: main
 	@echo "Removing main from directory..."
