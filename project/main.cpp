@@ -72,17 +72,13 @@ class Fruit
       fruitDesc = "";
       fruitNum = 0;
     };
-    string getFruitName();
     void setFruitName(string newFruitName);
-    string getFruitDesc();
     void setFruitDesc(string newFruitDesc);
     void incNum(int numToInc);
     void decNum(int numToDec);
     void print();
 };
-string Fruit::getFruitName() { return fruitName; }
 void Fruit::setFruitName(string newFruitName) { fruitName = newFruitName; }
-string Fruit::getFruitDesc() { return fruitDesc; }
 void Fruit::setFruitDesc(string newFruitDesc) { fruitDesc = newFruitDesc; }
 void Fruit::incNum(int numToInc) { fruitNum += numToInc; }
 void Fruit::decNum(int numToDec) { fruitNum -= numToDec; }
@@ -112,11 +108,12 @@ int main()
     cout << "\t1 : Make Fruit" << endl;
     cout << "Choice = ";
     getline(cin, optionBuffer);
+    cout << endl;
 
     /* operates on instructions provided by optionBuffer */
     if (optionBuffer.compare("0") == 0)
     {
-      cout << "Ending loop.." << endl;
+      cout << "Ending loop..\n" << endl;
     }
     else if (optionBuffer.compare("1") == 0)
     {
@@ -133,6 +130,7 @@ int main()
       myFruit.setFruitName(nameBuffer);
       myFruit.setFruitDesc(descBuffer);
       myFruit.print();
+      cout << endl;
 
       /* decide to modify num of fruit you have */
       string fruitBuffer = "";
@@ -143,61 +141,77 @@ int main()
         cout << "\t1 : Increase Fruit Quantity" << endl;
         cout << "\t2 : Decrease Fruit Quantity" << endl;
         cout << "\t3 : Change Fruit Name" << endl;
-        cout << "\t4 : Print Fruit Name" << endl;
-        cout << "\t5 : Change Fruit Description" << endl;
-        cout << "\t6 : Print Fruit Description" << endl;
-        cout << "Choice = ";
+        cout << "\t4 : Change Fruit Description" << endl;
+        cout << "\t5 : Print Fruit Data" << endl;
+        cout << "Choice : ";
         getline(cin, fruitBuffer);
+        cout << endl;
 
         /* operates on instructions provided by fruitBuffer */
         if (fruitBuffer.compare("0") == 0)
         {
-          cout << "Restarting loop.." << endl;
+          cout << "Restarting loop..\n" << endl;
         }
         else if (fruitBuffer.compare("1") == 0)
         {
           string stringToIntBuffer = "";
-          cout << "How many would you like to add? " << endl;
+          cout << "How many would you like to add? ";
           getline(cin, stringToIntBuffer);
           if (verifyNumberString(stringToIntBuffer))
           {
-            cout << "Increasing quantity now.." << endl;
+            cout << "Increasing quantity now..\n" << endl;
             myFruit.incNum(stoi(stringToIntBuffer));
           }
           else
           {
-            cout << "Invalid number inputed.." << endl;
+            cout << "Invalid number inputed..\n" << endl;
           }
         }
         else if (fruitBuffer.compare("2") == 0)
         {
-          cout << "|WIP|" << endl;
+          string stringToIntBuffer = "";
+          cout << "How many would you like to remove? ";
+          getline(cin, stringToIntBuffer);
+          if (verifyNumberString(stringToIntBuffer))
+          {
+            cout << "Decreasing quantity now..\n" << endl;
+            myFruit.decNum(stoi(stringToIntBuffer));
+          }
+          else
+          {
+            cout << "Invalid number inputed..\n" << endl;
+          }
         }
         else if (fruitBuffer.compare("3") == 0)
         {
-          cout << "|WIP|" << endl;
+          string newNameBuffer = "";
+          cout << "What would you like to change the name to? ";
+          getline(cin, newNameBuffer);
+          cout << "Changing name now..\n" << endl;
+          myFruit.setFruitName(newNameBuffer);
         }
         else if (fruitBuffer.compare("4") == 0)
         {
-          cout << "|WIP|" << endl;
+          string newDescBuffer = "";
+          cout << "What would you like to change the description to? ";
+          getline(cin, newDescBuffer);
+          cout << "Changing description now..\n" << endl;
+          myFruit.setFruitDesc(newDescBuffer);
         }
         else if (fruitBuffer.compare("5") == 0)
         {
-          cout << "|WIP|" << endl;
-        }
-        else if (fruitBuffer.compare("6") == 0)
-        {
           myFruit.print();
+          cout << endl;
         }
         else
         {
-          cout << "Make sure your input is correct.." << endl;
+          cout << "Make sure your input is correct..\n" << endl;
         }
       }
     }
     else
     {
-      cout << "Make sure your input is correct.." << endl;
+      cout << "Make sure your input is correct..\n" << endl;
     }
   }
   return 0;
