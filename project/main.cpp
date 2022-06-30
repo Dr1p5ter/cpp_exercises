@@ -39,6 +39,26 @@ vector<string> seperateByDelim(string sentence, char regx)
   return sepWords;
 } /* seperateByDelim() */
 
+/* This function will verify that a given string only contains numbers; will
+ * return a boolean equivilent.
+ */
+
+int verifyNumberString(string numString)
+{
+  for (auto c : numString)
+  {
+    if ((c < 48) || (c > 57))
+    {
+      return 0;
+    }
+  }
+  return 1;
+} /* verifyNumberString() */
+
+/* This class will be used for holding specific information about fruit that
+ * the user will generate data for.
+ */
+
 class Fruit
 {
   private:
@@ -60,25 +80,24 @@ class Fruit
     void decNum(int numToDec);
     void print();
 };
-
 string Fruit::getFruitName() { return fruitName; }
-
 void Fruit::setFruitName(string newFruitName) { fruitName = newFruitName; }
-
 string Fruit::getFruitDesc() { return fruitDesc; }
-
 void Fruit::setFruitDesc(string newFruitDesc) { fruitDesc = newFruitDesc; }
-
 void Fruit::incNum(int numToInc) { fruitNum += numToInc; }
-
 void Fruit::decNum(int numToDec) { fruitNum -= numToDec; }
-
 void Fruit::print()
 {
   cout << "\tFruit name : " << '\"' << fruitName << '\"' << '\n';
   cout << "\tFruit desc : " << '\"' << fruitDesc << '\"' << '\n';
   cout << "\tFruit num  : " << fruitNum << '\n';
 }
+/* class Fruit */
+
+/* Program will begin here and execute the following instructions. Comments
+ * are provided for better understanding. User will provide data and main
+ * will do the rest.
+ */
 
 int main()
 {
@@ -130,7 +149,6 @@ int main()
         cout << "Choice = ";
         getline(cin, fruitBuffer);
 
-        // TODO : finish this up some other time
         /* operates on instructions provided by fruitBuffer */
         if (fruitBuffer.compare("0") == 0)
         {
@@ -138,7 +156,18 @@ int main()
         }
         else if (fruitBuffer.compare("1") == 0)
         {
-          cout << "|WIP|" << endl;
+          string stringToIntBuffer = "";
+          cout << "How many would you like to add? " << endl;
+          getline(cin, stringToIntBuffer);
+          if (verifyNumberString(stringToIntBuffer))
+          {
+            cout << "Increasing quantity now.." << endl;
+            myFruit.incNum(stoi(stringToIntBuffer));
+          }
+          else
+          {
+            cout << "Invalid number inputed.." << endl;
+          }
         }
         else if (fruitBuffer.compare("2") == 0)
         {
@@ -158,7 +187,7 @@ int main()
         }
         else if (fruitBuffer.compare("6") == 0)
         {
-          cout << "|WIP|" << endl;
+          myFruit.print();
         }
         else
         {
